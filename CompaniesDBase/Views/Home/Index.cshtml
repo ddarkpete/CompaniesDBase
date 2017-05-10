@@ -1,0 +1,156 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+}
+
+<div class="page-header">
+    <h1>Companies Data Base</h1>
+</div>
+
+<div class="row">
+
+  
+    <div class="col-md-6">
+        <label>Keyword</label>
+        <form data-bind="submit: searchCompany">
+            <input type="number" id="searchQuery"  />
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Companies</h2>
+            </div>
+            
+            
+            
+            <div class="panel-body" id="companieslist">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>NIP</th>
+                            <th>KRS</th>
+                            <th>REGON</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: companies">
+                        <tr>
+                            <td data-bind="text: CompanyName"></td>
+                            <td data-bind="text: NIPNumber"></td>
+                            <td data-bind="text: KRSNumber"></td>
+                            <td data-bind="text: REGONNumber"></td>
+                            <td><a href="#" data-bind="click: $parent.delCompany">Delete</a></td>
+                            <td><a href="#" data-bind="click: $parent.getCompanyDetail">Change</a></td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+    </div>
+
+    <!-- ko if:detail() -->
+    
+    <!--
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Detail</h2>
+                </div>
+                <table class="table">
+                    <tr><td>Company Name</td><td data-bind="text: detail().CompanyName"></td></tr>
+                    <tr><td>NIP</td><td data-bind="text: detail().NIPNumber"></td></tr>
+                    <tr><td>KRS</td><td data-bind="text: detail().KRSNumber"></td></tr>
+                    <tr><td>REGON</td><td data-bind="text: detail().REGONNumber"></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    -->
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Change Company</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" id="changeForm" data-bind="">
+                    <div class="form-group" data-bind="">
+
+
+
+                        <div class="col-md-12">
+                            <label for="inputComanyName" class="control-label">Comapny Name</label>
+                            <input type="text" class="form-control" id="inputCompanyName" data-bind="value: detail().CompanyName" />
+                        </div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <label for="inputNIPNumber" class="control-label">NIP</label>
+                            <input type="text" class="form-control" id="inputNIPNumber" data-bind="value: detail().NIPNumber " />
+                        </div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <label for="inputKRSNumber" class="control-label">KRS</label>
+                            <input type="text" class="form-control" id="inputKRSNumber" data-bind="value: detail().KRSNumber" />
+                        </div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <label for="inputREGONNumber" class="control-label">REGON</label>
+                            <input type="text" step="any" class="form-control" id="inputREGONNumber" data-bind="value: detail().REGONNumber" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        
+    <!-- /ko -->
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Add Company</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" id="addForm" data-bind="submit: addCompany">
+                    <div class="form-group" data-bind="with: newCompany">
+                        
+                        
+
+                        <div class="col-md-12">
+                            <label for="inputComanyName" class="control-label">Comapny Name</label>
+                            <input type="text" class="form-control" id="inputCompanyName" data-bind="value:CompanyName" />
+                        </div>
+                        <br />
+                        
+                        <div class="col-md-12">
+                            <label for="inputNIPNumber" class="control-label">NIP</label>
+                            <input type="text" class="form-control" id="inputNIPNumber" data-bind="value:NIPNumber" />
+                        </div>
+                        <br />
+                        
+                        <div class="col-md-12">
+                            <label for="inputKRSNumber" class="control-label">KRS</label>
+                            <input type="text" class="form-control" id="inputKRSNumber" data-bind="value:KRSNumber" />
+                        </div>
+                        <br />
+                        
+                        <div class="col-md-12">
+                            <label for="inputREGONNumber" class="control-label">REGON</label>
+                            <input type="text" step="any" class="form-control" id="inputREGONNumber" data-bind="value:REGONNumber" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
