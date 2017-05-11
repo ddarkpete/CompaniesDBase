@@ -46,7 +46,7 @@
     }
 
     searchCompany = function () {
-        ajaxHelper(companiesUri + '?' + $('#searchPropDropdown').val() + '=' + $('#searchQuery').val(), 'GET').done(function (data) {
+        ajaxHelper(companiesUri + $('#searchPropDropdown').val() + '/' + $('#searchQuery').val(), 'GET').done(function (data) {
             self.companies(data);
         });
     }

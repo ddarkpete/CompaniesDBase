@@ -34,10 +34,61 @@ namespace CompaniesDBase.Controllers
         }
 
         // GET: api/Companies?CompanyName=cname
+        [HttpGet, Route("api/Companies/CompanyName/{cName}")]
         public IQueryable<CompanyDTO> GetCompanyByName(string cName)
         {
             var companies = from c in db.Companies
-                            where string.Equals( c.CompanyName , cName , StringComparison.OrdinalIgnoreCase)
+                            where c.CompanyName == cName
+                            select new CompanyDTO()
+                            {
+                                Id = c.Id,
+                                CompanyName = c.CompanyName,
+                                NIPNumber = c.NIPNumber,
+                                KRSNumber = c.KRSNumber,
+                                REGONNumber = c.REGONNumber
+
+                            };
+            return companies;
+        }
+
+        [HttpGet, Route("api/Companies/NIPNumber/{nip}")]
+        public IQueryable<CompanyDTO> GetCompanyByNip(string nip)
+        {
+            var companies = from c in db.Companies
+                            where c.NIPNumber == nip
+                            select new CompanyDTO()
+                            {
+                                Id = c.Id,
+                                CompanyName = c.CompanyName,
+                                NIPNumber = c.NIPNumber,
+                                KRSNumber = c.KRSNumber,
+                                REGONNumber = c.REGONNumber
+
+                            };
+            return companies;
+        }
+        [HttpGet, Route("api/Companies/KRSNumber/{krs}")]
+        public IQueryable<CompanyDTO> GetCompanyByKrs(string krs)
+        {
+            var companies = from c in db.Companies
+                            where c.KRSNumber == krs
+                            select new CompanyDTO()
+                            {
+                                Id = c.Id,
+                                CompanyName = c.CompanyName,
+                                NIPNumber = c.NIPNumber,
+                                KRSNumber = c.KRSNumber,
+                                REGONNumber = c.REGONNumber
+
+                            };
+            return companies;
+        }
+
+        [HttpGet, Route("api/Companies/REGONNumber/{regon}")]
+        public IQueryable<CompanyDTO> GetCompanyByRegon(string regon)
+        {
+            var companies = from c in db.Companies
+                            where c.REGONNumber == regon
                             select new CompanyDTO()
                             {
                                 Id = c.Id,
