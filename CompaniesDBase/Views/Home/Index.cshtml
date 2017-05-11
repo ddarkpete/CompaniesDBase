@@ -12,7 +12,14 @@
     <div class="col-md-6">
         <label>Keyword</label>
         <form data-bind="submit: searchCompany">
-            <input type="number" id="searchQuery"  />
+            <input type="text" id="searchQuery"  />
+            <select id="searchPropDropdown">
+                <option value="dupa">ID</option>
+                <option value="Name">Name</option>
+                <option value="NIPNumber">NIP</option>
+                <option value="KRSNumber">KRS</option>
+                <option value="REGONNumber">REGON</option>
+            </select>
             <button type="submit" class="btn btn-default">Search</button>
         </form>
         <div class="panel panel-default">

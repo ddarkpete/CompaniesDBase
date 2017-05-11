@@ -33,6 +33,23 @@ namespace CompaniesDBase.Controllers
             return companies;
         }
 
+        // GET: api/Companies?CompanyName=cname
+        public IQueryable<CompanyDTO> GetCompanyByName(string cName)
+        {
+            var companies = from c in db.Companies
+                            where string.Equals( c.CompanyName , cName , StringComparison.OrdinalIgnoreCase)
+                            select new CompanyDTO()
+                            {
+                                Id = c.Id,
+                                CompanyName = c.CompanyName,
+                                NIPNumber = c.NIPNumber,
+                                KRSNumber = c.KRSNumber,
+                                REGONNumber = c.REGONNumber
+
+                            };
+            return companies;
+        }
+
         // GET: api/Companies/5
         [ResponseType(typeof(CompanyDTO))]
         public async Task<IHttpActionResult> GetCompany(int id)
@@ -53,6 +70,27 @@ namespace CompaniesDBase.Controllers
 
             return Ok(company);
         }
+        /*
+        [ResponseType(typeof(CompanyDTO))]
+        public async Task<IHttpActionResult> GetCompanyByName(string name)
+        {
+            var company = await db.Companies.Select(c =>
+               new CompanyDTO()
+               {
+                   Id = c.Id,
+                   CompanyName = c.CompanyName,
+                   NIPNumber = c.NIPNumber,
+                   KRSNumber = c.KRSNumber,
+                   REGONNumber = c.REGONNumber
+               }).SingleOrDefaultAsync(c => string.Equals(c.CompanyName, name, StringComparison.OrdinalIgnoreCase));
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(company);
+        }
+        */
 
         // PUT: api/Companies/5
         [ResponseType(typeof(void))]

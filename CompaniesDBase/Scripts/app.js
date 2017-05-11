@@ -1,5 +1,7 @@
 ﻿var ViewModel = function () {
     var self = this;
+    var companiesUri = '/api/companies/';
+
     self.companies = ko.observableArray();
     self.error = ko.observable();
     self.detail = ko.observable();
@@ -15,12 +17,11 @@
 
     }
 
-    /*self.getCompany = function () {
-        ajaxHelper(companiesUri + , 'GET').done(function (data) {
+    self.getCompanyDetail = function (item) {
+        ajaxHelper(companiesUri + item.Id, 'GET').done(function (data) {
             self.detail(data);
         });
-    }*/
-    var companiesUri = '/api/companies/';
+    }
 
     self.addCompany = function (formElement) {
         var company = {
@@ -45,7 +46,7 @@
     }
 
     searchCompany = function () {
-        ajaxHelper(companiesUri +'?Id='+ $('#searchQuery').val(), 'GET').done(function (data) {
+        ajaxHelper(companiesUri + '?' + $('#searchPropDropdown').val() + '=' + $('#searchQuery').val(), 'GET').done(function (data) {
             self.companies(data);
         });
     }
