@@ -22,6 +22,7 @@
             </select>
             <button type="submit" class="btn btn-default">Search</button>
         </form>
+        <button id="addButton" class="btn btn-default" data-bind="click: addEvent">Add new record</button>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Companies</h2>
@@ -60,67 +61,51 @@
 
     <!-- ko if:detail() -->
     
-    <!--
-    <div class="col-md-4">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title">Detail</h2>
-                </div>
-                <table class="table">
-                    <tr><td>Company Name</td><td data-bind="text: detail().CompanyName"></td></tr>
-                    <tr><td>NIP</td><td data-bind="text: detail().NIPNumber"></td></tr>
-                    <tr><td>KRS</td><td data-bind="text: detail().KRSNumber"></td></tr>
-                    <tr><td>REGON</td><td data-bind="text: detail().REGONNumber"></td></tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    -->
     
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title">Change Company</h2>
-            </div>
-
-            <div class="panel-body">
-                <form class="form-horizontal" id="changeForm" data-bind="">
-                    <div class="form-group" data-bind="">
-
-
-
-                        <div class="col-md-12">
-                            <label for="inputComanyName" class="control-label">Comapny Name</label>
-                            <input type="text" class="form-control" id="inputCompanyName" data-bind="value: detail().CompanyName" />
-                        </div>
-                        <br />
-
-                        <div class="col-md-12">
-                            <label for="inputNIPNumber" class="control-label">NIP</label>
-                            <input type="text" class="form-control" id="inputNIPNumber" data-bind="value: detail().NIPNumber " />
-                        </div>
-                        <br />
-
-                        <div class="col-md-12">
-                            <label for="inputKRSNumber" class="control-label">KRS</label>
-                            <input type="text" class="form-control" id="inputKRSNumber" data-bind="value: detail().KRSNumber" />
-                        </div>
-                        <br />
-
-                        <div class="col-md-12">
-                            <label for="inputREGONNumber" class="control-label">REGON</label>
-                            <input type="text" step="any" class="form-control" id="inputREGONNumber" data-bind="value: detail().REGONNumber" />
-                        </div>
+        
+            <div class="col-md-4" id="changeDiv">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Change Company</h2>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="changeForm" data-bind="submit: updateCompany">
+                            <div class="form-group" data-bind="">
+
+
+
+                                <div class="col-md-12">
+                                    <label for="inputCompanyName" class="control-label">Comapny Name</label>
+                                    <input type="text" class="form-control" name="updateCompanyName" data-bind="value: detail().CompanyName" />
+                                </div>
+                                <br />
+
+                                <div class="col-md-12">
+                                    <label for="inputNIPNumber" class="control-label">NIP</label>
+                                    <input type="text" class="form-control" name="updateNIPNumber" data-bind="value: detail().NIPNumber " />
+                                </div>
+                                <br />
+
+                                <div class="col-md-12">
+                                    <label for="inputKRSNumber" class="control-label">KRS</label>
+                                    <input type="text" class="form-control" name="updateKRSNumber" data-bind="value: detail().KRSNumber" />
+                                </div>
+                                <br />
+
+                                <div class="col-md-12">
+                                    <label for="inputREGONNumber" class="control-label">REGON</label>
+                                    <input type="text" step="any" class="form-control" name="updateREGONNumber" data-bind="value: detail().REGONNumber" />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
         
     <!-- /ko -->
-    <div class="col-md-4">
+    <div class="col-md-4" id="addDiv" hidden>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Add Company</h2>

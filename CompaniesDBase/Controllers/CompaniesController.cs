@@ -121,27 +121,7 @@ namespace CompaniesDBase.Controllers
 
             return Ok(company);
         }
-        /*
-        [ResponseType(typeof(CompanyDTO))]
-        public async Task<IHttpActionResult> GetCompanyByName(string name)
-        {
-            var company = await db.Companies.Select(c =>
-               new CompanyDTO()
-               {
-                   Id = c.Id,
-                   CompanyName = c.CompanyName,
-                   NIPNumber = c.NIPNumber,
-                   KRSNumber = c.KRSNumber,
-                   REGONNumber = c.REGONNumber
-               }).SingleOrDefaultAsync(c => string.Equals(c.CompanyName, name, StringComparison.OrdinalIgnoreCase));
-            if (company == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(company);
-        }
-        */
+        
 
         // PUT: api/Companies/5
         [ResponseType(typeof(void))]
